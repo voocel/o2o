@@ -1,10 +1,16 @@
 <?php
 namespace app\admin\controller;
+use think\Controller;
 
-class Index
+class Index extends Controller
 {
     public function index()
     {
-        return 999;
+        return $this->fetch();
+    }
+
+    public function welcome()
+    {
+        return $this->fetch();
     }
 }
