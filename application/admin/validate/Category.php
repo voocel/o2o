@@ -13,7 +13,8 @@ class Category extends Validate{
 
     // 场景设置
     protected $scene = [
-        'add'        =>['name','parent_id'],      //(add为调用时使用的参数标记,只验证这两个字段)添加分类验证
-        'listorder'  =>['id','listorder']      //排序验证
+        'add'        =>['name','parent_id','id'],      //(add为调用时使用的参数标记,只验证这两个字段)添加分类验证
+        'listorder'  =>['id','listorder'],      //排序验证
+        'status'     =>['id','status'],
     ];
 }
