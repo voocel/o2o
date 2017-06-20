@@ -5,6 +5,6 @@ class Index
 {
     public function index()
     {
-        return ['w','r'];
+        return '首页';
     }
 }
