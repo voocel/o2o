@@ -1,0 +1,18 @@
+.o2o-page .pagination li{
+display: inline;
+padding-left: 10px;
+}
+.pagination .active{
+    color: red;
+}
+.pagination.disables{
+color: #888;
+}
+.pagination{
+margin-left: 50%;
+}
+.pagination span{
+    padding: 5px 10px 5px 10px;
+    background: skyblue;
+    ;
+}

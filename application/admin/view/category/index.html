@@ -26,40 +26,31 @@
 				<tr class="text-c">
 					<th width="25"><input type="checkbox" name="" value=""></th>
 					<th width="80">ID</th>
-					<th width="80">排序</th>
-					<th>栏目名称</th>
-					<th width="100">操作</th>
+					<th width="100">分类</th>
+					<th width="30">排序</th>
+					<th width="150">新增时间</th>
+					<th width="60">发布状态</th>
+					<th width="150">操作</th>
 				</tr>
 			</thead>
 			<tbody>
+				{volist name="categorys" id='vo'}
 				<tr class="text-c">
 					<td><input type="checkbox" name="" value=""></td>
-					<td>1</td>
-					<td>1</td>
-					<td class="text-l">一级栏目</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+					<td>{$vo.id}</td>
+					<td>{$vo.name}</td>
+					<td>{$vo.listorder}</td>
+					<td class="text-l">{$vo.create_time}</td>
+					<td><a href="" title="点击修改状态">{$vo.status|status}</a></td>
+					<td class="f-14"><a href="{:url('Category/index',['parent_id'=>$vo.id])}">获取子栏目</a><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url(\'category/edit\',[\'id\'=>$vo.id])}','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a title="删除" href="javascript:;" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
-				<tr class="text-c">
-					<td><input type="checkbox" name="" value=""></td>
-					<td>2</td>
-					<td>2</td>
-					<td class="text-l">&nbsp;&nbsp;├&nbsp;二级栏目</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','2','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del(this,'2')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td><input type="checkbox" name="" value=""></td>
-					<td>3</td>
-					<td>3</td>
-					<td class="text-l">&nbsp;&nbsp;├&nbsp;二级栏目</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','3','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del(this,'3')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
+				{/volist}
 			</tbody>
 		</table>
 	</div>
 </div>
+<div class="cl pd-5 bg-1 bk-gray mt-20 o2o-page">{$categorys->render()}</div>
 <!--_footer 作为公共模版分离出去-->
 {include file="public/_footer"}
 <!--/_footer 作为公共模版分离出去-->

@@ -9,16 +9,16 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="name">
+				<input type="text" class="input-text" value="{$category->name}" placeholder="" id="" name="name">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">        
 				<select name="parent_id" class="select">
 					<option value="0">一级分类</option>
                     {volist name='categorys' id='vo'}
-					<option value="{$vo.id}">--{$vo.name}</option>
+					<option value="{$vo.id}" {if condition="$category->parent_id eq $vo.id"}selected="selected"{/if}>--{$vo.name}</option>
                     
 					{/volist}
 				</select>
