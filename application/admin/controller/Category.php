@@ -1,7 +1,8 @@
 <?php
 namespace app\admin\controller;
 use think\Controller;
-
+use think\Db;
+use Map;
 class Category extends Controller
 {
     //显示分类列表
@@ -12,8 +13,9 @@ class Category extends Controller
         return $this->fetch('',[
             'categorys' => $categorys,
         ]);
+        
     }
-
+    
     //显示分类添加页面
     public function add()
     {
