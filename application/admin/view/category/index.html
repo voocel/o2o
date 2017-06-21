@@ -8,6 +8,7 @@
 	栏目管理
 	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
+</div>
 <div class="page-container">
 	<div class="text-c">
 		<input type="text" name="" id="" placeholder="栏目名称、id" style="width:250px" class="input-text">
@@ -39,11 +40,11 @@
 					<td><input type="checkbox" name="" value=""></td>
 					<td>{$vo.id}</td>
 					<td>{$vo.name}</td>
-					<td>{$vo.listorder}</td>
+					<td class="listorder"><input type="text" size="3" attr-id="{$vo.id}" name="listorder" value="{$vo.listorder}"></td>
 					<td class="text-l">{$vo.create_time}</td>
-					<td><a href="" title="点击修改状态">{$vo.status|status}</a></td>
+					<td><a href="{:url('category/status',['id'=>$vo.id,'status'=>$vo.status==1?0:1])}" title="点击修改状态">{$vo.status|status}</a></td>
 					<td class="f-14"><a href="{:url('Category/index',['parent_id'=>$vo.id])}">获取子栏目</a><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url(\'category/edit\',[\'id\'=>$vo.id])}','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+						<a title="删除" href="javascript:;" onclick="system_category_del('{:url(\'category/status\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
 				{/volist}
 			</tbody>
@@ -59,6 +60,7 @@
 <script type="text/javascript" src="__STATIC__/admin/hui/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/hui/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/hui/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
 <script type="text/javascript">
 $('.table-sort').dataTable({
 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
@@ -77,22 +79,17 @@ function system_category_edit(title,url,id,w,h){
 	layer_show(title,url,w,h);
 }
 /*系统-栏目-删除*/
-function system_category_del(obj,id){
+function system_category_del(url){
 	layer.confirm('确认要删除吗？',function(index){
-		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});
+         window.location.href=url;
 	});
 }
+</script>
+
+<script>
+	var SCOPE = {
+		"listorder_url"  : "{:url('category/listorder')}"
+	}
 </script>
 </body>
 </html>
