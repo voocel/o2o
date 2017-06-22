@@ -42,6 +42,7 @@ return [
 
     'bis'     =>[
               '__dir__'  => ['controller','view'],
-              'controller'=> ['Register','Login']
+              'controller'=> ['Register','Login'],
+              'view'      => ['register/index','login/index'],
     ]
 ];
