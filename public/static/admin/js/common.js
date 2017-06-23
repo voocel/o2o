@@ -29,8 +29,28 @@ $('.city_id').change(function(){
             });
             $('.se_city_id').html(city_html);
         }else if(result.status==400) {
-            alert(result.message);
-            return;
+            $('.se_city_id').html('');
+        }
+    },'json');
+    
+});
+
+/**分类选择**/
+$('.category_id').change(function(){
+    category_id=$(this).val();
+    url = SCOPE.category_url;
+    data = {'id':category_id};
+    $.post(url,data,function(result){
+        if(result.status==200){
+            data=result.data;
+            category_html = '';
+           $(data).each(function(){
+               category_html +="<input name='se_category_id[]' type='checkbox' id='checkbox-moban' value='"+this.id+"'/>"+this.name;
+               category_html +="<label for='checkbox-moban'>&nbsp;</label>";
+           });
+            $('.se_category_id').html(category_html);
+        }else if(result.status==400) {
+            $('.se_category_id').html('');
         }
     },'json');
     

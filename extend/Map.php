@@ -24,7 +24,12 @@
         //1.file_get_contents($url);
         //2.curl
         $res=toCurl($url);
-        return $res;
+        if($res){
+            return json_decode($res,true);
+        }else{
+            return [];
+        }
+        
      }
 
      /**

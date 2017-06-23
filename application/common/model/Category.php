@@ -42,6 +42,19 @@ class Category extends Model
         return $res;
     }
 
+//前端api调用
+    public function getNormalCategorysByParentId($parentId){
+        $where = [
+            'status'  => 1,
+            'parent_id' => $parentId,
+        ];
+        $order = [
+            'id'   => 'desc',
+        ];
+
+       return $this->where($where)->order($order)->select();
+    }
+
 
 
     
