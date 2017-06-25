@@ -1,0 +1,12 @@
+{include file="public/_meta"}
+
+<div class="cl pd-5 bg-1 bk-gray mt-20 c-primary text-c">
+    {if $detail}
+    <h1>{$detail.status|bisRegister}</h1>
+    {else}
+    <h1>不存在该用户的入住申请状态</h1>
+    {/if}
+</div>
+{include file="public/_footer"}
+</body>
+</html>

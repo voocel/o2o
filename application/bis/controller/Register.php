@@ -25,12 +25,19 @@ class Register extends Controller
         if(empty($lnglat)||$lnglat['status']!==0||$lnglat['result']['precise']!=1){
             $this->error('无法获取数据，或匹配地址不精确!');
         }
+       
+       //检测用户名是否已存在
+      $account = model('bis_account')->get(['username'=>$data['username']]);
+      if($account){
+          $this->error("该账户已经存在!");
+      }
+
        //商户基本信息入库
        $bisData=array(
            'name'   => $data['name'],
            'email'  => $data['email'],
            'logo'   => $data['logo'],
-           'licence_logo' =>['licence_logo'],
+           'licence_logo' =>$data['licence_logo'],
            'city_id'=> $data['city_id'],
            'city_path' => empty($data['se_city_id'])?$data['city_id']:$data['city_id'].','.$data['se_city_id'],
            'bank_info' => $data['bank_info'],
@@ -38,7 +45,7 @@ class Register extends Controller
            'bank_user' => $data['bank_user'],
            'faren'     => $data['faren'],
            'faren_tel' => $data['faren_tel'],
-           'description' => 666,
+           'description' => $data['description'],
        );
        $bisId=model('Bis')->add($bisData);
 
@@ -50,13 +57,14 @@ class Register extends Controller
        $locationData = array(
            'bis_id'        => $bisId,
            'name'          => $data['name'],
+           'logo'          => $data['logo'],
            'tel'           => $data['tel'],
            'contact'       => $data['contact'],
            'category_id'   => $data['category_id'],
-           'category_path' => $data['category_id'].','.$data['cat'],
+           'category_path' => empty($data['se_category_id'])?$data['category_id']:$data['category_id'].','.$data['cat'],
            'city_id'       => $data['city_id'],
            'city_path'     => empty($data['se_city_id'])?$data['city_id']:$data['city_id'].','.$data['se_city_id'],
-           'address'       => $data['address'],
+           'api_address'       => $data['address'],
            'open_time'     => $data['open_time'],
            'content'       => empty($data['content'])? '':$data['content'],
            'is_main'       => 1, //代表总店信息,因为可能有分店
@@ -75,8 +83,8 @@ class Register extends Controller
            'password'      => md5($data['password'].$data['code']),
            'is_main'       => 1, //代表总管理员
        );
-       $accountId=model('BisAccount')->add($locationData);
-       if($accountId){
+       $accountId=model('BisAccount')->add($accountData);
+       if(!$accountId){
            $this->error('创建失败!');
        }
        //发送邮件
@@ -84,7 +92,7 @@ class Register extends Controller
        $title = "入驻申请通知!";
        $content = "您申请的入驻申请需等待平台审核，您可通过点击链接<a href='".$url."' target='_blank'>查看链接</a> 查看状态";
        \phpmailer\Email::send($data['email'],$title,$content);
-       $this->success('申请成功!');
+       $this->success('申请成功!',url('bis/register/waiting',['id'=>$bisId]));
 
 
 
@@ -92,7 +100,12 @@ class Register extends Controller
         //账户信息验证
     }
 
-    public function waiting(){
-        echo "666";
+    public function waiting($id){
+        if(empty($id)){
+            $this->error('id不能为空!');
+        }
+        $detail = model('Bis')->get($id);
+
+        return $this->fetch('',['detail'=>$detail]);
     }
 }

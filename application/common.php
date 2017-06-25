@@ -25,3 +25,45 @@ function toCurl($url,$type=0,$data=[]){
     curl_close($ch);
     return $output;
 }
+
+//商户入住申请状态
+function bisRegister($status){
+       if($status == 1){
+           $str = "入入驻申请成功!";
+       }elseif($status==0){
+           $str = "审核中";
+       }elseif($status==2){
+           $str = "不符合申请条件，请重新提交!";
+       }else{
+           $str="该申请已删除!";
+       }
+       return $str;
+}
+
+//分页样式
+function pagination($obj){
+    if(empty($obj)){
+        return '';
+    }
+    return '<div class="cl pd-5 bg-1 bk-gray mt-20 o2o-page">'.$obj->render().'</div>';
+}
+
+function getSeCityName($path){
+    if(empty($path)){
+        return '';
+    }
+    
+    if(preg_match("/,/",$path)){
+        $cityPath = explode(',',$path);
+        $cityId = $cityPath[1];
+        
+    }else{
+        $cityId = $path;
+    }
+    $city = model('City')->get($cityId);
+    return $city->name;
+}
+
+
+
+}

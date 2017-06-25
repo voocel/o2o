@@ -3,7 +3,7 @@ display: inline;
 padding-left: 10px;
 }
 .pagination .active{
-    color: red;
+    color: #fff;
 }
 .pagination.disables{
 color: #888;
