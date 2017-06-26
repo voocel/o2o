@@ -63,7 +63,3 @@ function getSeCityName($path){
     $city = model('City')->get($cityId);
     return $city->name;
 }
-
-
-
-}

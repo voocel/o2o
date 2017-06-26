@@ -4,6 +4,11 @@ use think\Controller;
 
 class Bis extends Controller
 {
+    //审核通过的商户列表
+    public function index(){
+        $bis = model('Bis')->getBisByStatus(1);
+        return $this->fetch('',['bis'=>$bis]);
+    }
     //入驻申请列表
     public function apply()
     {
@@ -43,7 +48,11 @@ class Bis extends Controller
         //     $this->error($validate->getError());
         // }
         $res = model('Bis')->save(['status'=>$data['status']],['id'=>$data['id']]);
-        if($res){
+        $location = model('BisLocation')->save(['status'=>$data['status']],['id'=>$data['id'],'is_main'=>1]);
+        $account = model('BisAccount')->save(['status'=>$data['status']],['id'=>$data['id'],'is_main'=>1]);
+        if($res&&$location&&$account){
+            //发送邮件通知
+            //status 1=>审核通过, 2=>不通过, -1=>删除
             $this->success('状态更新成功!');
         }else{
             $this->error('状态更新失败!');
