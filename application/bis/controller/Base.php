@@ -1,7 +1,7 @@
 <?php
 namespace app\bis\controller;
 use think\Controller;
-class Index extends Controller
+class Base extends Controller
 {
     public $account;
 
@@ -24,10 +24,10 @@ class Index extends Controller
     }
 
     public function getLoginUser(){
-        if(!$this->$account){
-            $this->$account = session('bisAccount','','bis');
+        if(!$this->account){
+            $this->account = session('bisAccount','','bis');
         }
-            return $account;
+            return $this->account;
     }
  
 }
