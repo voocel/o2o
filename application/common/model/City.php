@@ -17,4 +17,17 @@ class City extends Model
 
        return $this->where($where)->order($order)->select();
     }
+    
+    //获取市
+    public function getNormalCitys(){
+        $where = array(
+            'status'    => 1,
+            'parent_id' => ['gt',0]
+        );
+        $order = array(
+            'id'   =>'desc',
+        );
+
+      return  $this->where($where)->order($order)->select();
+    }
 }

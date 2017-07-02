@@ -52,7 +52,7 @@ class Category extends Model
             'id'   => 'desc',
         ];
 
-       return $this->where($where)->order($order)->select();
+       return $this->where($where)->order($order)->paginate();
     }
 
 

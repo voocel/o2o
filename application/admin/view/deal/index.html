@@ -1,0 +1,121 @@
+{include file="public/_meta"}
+<title>团购管理</title>
+</head>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+	<span class="c-gray en">&gt;</span>
+	团购管理
+	<span class="c-gray en">&gt;</span>
+	团购商品列表
+	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
+</div>
+<div class="page-container">
+    <div class="cl pd-5 bg-1 bk-gray mt-20">
+    <div class="text-c">
+        <form action="{:url('deal/index')}" method="get">
+        <span class="select-box inline">
+            <select name="category_id" class="select">
+                <option value="0">全部分类</option>
+                {volist name="categorys" id="vo"}
+                <option value="{$vo.id}">{$vo.name}</option>
+                {/volist}
+            </select>
+        </span>
+
+        <span class="select-box inline">
+            <select name="city_id" class="select">
+                <option value="0">全部城市</option>
+                {volist name="citys" id="vo"}
+                <option value="{$vo.id}">{$vo.name}</option>
+                {/volist}
+            </select>
+        </span>
+        <input type="text" name="start_time" class="input-text" id="countTimestart" onfocus="selecttime(1)"
+        value="" style="width:120px;">
+        <input type="text" name="end_time" class="input-text" id="countTimestart" onfocus="selecttime(1)"
+        value="" style="width:120px;">
+
+		<input type="text" name="" id="" placeholder="商品名称" style="width:250px" class="input-text">
+		<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+        </form>
+	</div>
+    </div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-hover table-bg table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="25"><input type="checkbox" name="" value=""></th>
+					<th width="50">ID</th>
+                    <th width="150">商品名称</th>
+					<th width="100">栏目分类</th>
+					<th width="50">城市</th>
+					<th width="50">购买件数</th>
+					<th width="120">开始结束时间</th>
+                    <th width="130">创建时间</th>
+                    <th width="80">状态</th>
+					<th width="80">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{volist name="deals" id='vo'}
+				<tr class="text-c">
+					<td><input type="checkbox" name="" value=""></td>
+					<td>{$vo.id}</td>
+					<td>{$vo.name}</td>
+					<td>{$vo.category_id}</td>
+                    <td>{$vo.city_id}</td>
+                    <td>{$vo.buy_count}</td>
+                    <td>{$vo.start_time|date='Y-m-d H:i', ###}</br>{$vo.end_time|date='Y-m-d H:i', ###}</td>
+					<td class="text-l">{$vo.create_time}</td>
+					<td>{$vo.status|status}</td>
+					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url(\'category/edit\',[\'id\'=>$vo.id])}','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a title="删除" href="javascript:;" onclick="system_category_del('{:url(\'category/status\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				</tr>
+				{/volist}
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--分页-->
+{:pagination($categorys)}
+<!--_footer 作为公共模版分离出去-->
+{include file="public/_footer"}
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+<script type="text/javascript">
+$('.table-sort').dataTable({
+	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"aoColumnDefs": [
+	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+	  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
+	]
+});
+/*系统-栏目-添加*/
+function system_category_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*系统-栏目-编辑*/
+function system_category_edit(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*系统-栏目-删除*/
+function system_category_del(url){
+	layer.confirm('确认要删除吗？',function(index){
+         window.location.href=url;
+	});
+}
+</script>
+
+<script>
+	var SCOPE = {
+		"listorder_url"  : "{:url('category/listorder')}"
+	}
+</script>
+</body>
+</html>
