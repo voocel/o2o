@@ -17,7 +17,7 @@
             <select name="category_id" class="select">
                 <option value="0">全部分类</option>
                 {volist name="categorys" id="vo"}
-                <option value="{$vo.id}">{$vo.name}</option>
+                <option value="{$vo.id}" {if condition="$vo.id eq $category_id"}selected="selected"{/if}>{$vo.name}</option>
                 {/volist}
             </select>
         </span>
@@ -26,16 +26,16 @@
             <select name="city_id" class="select">
                 <option value="0">全部城市</option>
                 {volist name="citys" id="vo"}
-                <option value="{$vo.id}">{$vo.name}</option>
+                <option value="{$vo.id}" {if condition="$vo.id eq $city_id"}selected="selected"{/if}>{$vo.name}</option>
                 {/volist}
             </select>
         </span>
         <input type="text" name="start_time" class="input-text" id="countTimestart" onfocus="selecttime(1)"
-        value="" style="width:120px;">
+        value="{$start_time}" style="width:120px;">
         <input type="text" name="end_time" class="input-text" id="countTimestart" onfocus="selecttime(1)"
-        value="" style="width:120px;">
+        value="{$end_time}" style="width:120px;">
 
-		<input type="text" name="" id="" placeholder="商品名称" style="width:250px" class="input-text">
+		<input type="text" name="name" value="{$name}" id="" placeholder="商品名称" style="width:250px" class="input-text">
 		<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
         </form>
 	</div>
@@ -62,8 +62,8 @@
 					<td><input type="checkbox" name="" value=""></td>
 					<td>{$vo.id}</td>
 					<td>{$vo.name}</td>
-					<td>{$vo.category_id}</td>
-                    <td>{$vo.city_id}</td>
+					<td>{$categoryArrs[$vo.category_id]}</td>
+                    <td>{$cityArrs[$vo.city_id]}</td>
                     <td>{$vo.buy_count}</td>
                     <td>{$vo.start_time|date='Y-m-d H:i', ###}</br>{$vo.end_time|date='Y-m-d H:i', ###}</td>
 					<td class="text-l">{$vo.create_time}</td>

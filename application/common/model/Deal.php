@@ -9,7 +9,7 @@ class Deal extends BaseModel{
             'id' => 'desc',
         );
       $res = $this->where($data)->order($order)->paginate();
-      echo $this->getLastSql();
+      //echo $this->getLastSql();
       return $res;
     }
 
