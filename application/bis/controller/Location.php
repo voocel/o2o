@@ -6,9 +6,10 @@ class Location extends Base
     /**
     *门店列表页
     */
-    public function index()
-    {
-        return $this->fetch();
+    public function index(){
+        $bis = model('bisLocation')->getBisLocationByStatus(1);
+        return $this->fetch('',['bis'=>$bis]);
+    
     }
 
     /**
