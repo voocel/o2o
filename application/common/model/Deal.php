@@ -13,5 +13,18 @@ class Deal extends BaseModel{
       return $res;
     }
 
+        //通过状态获取团购数据
+    public function getDealByStatus($status=0){
+        $where = array(
+            'status'   => $status,
+        );
+
+        $order = array(
+            'id'       => 'desc',
+        );
+
+        return $this->where($where)->order($order)->paginate(2);
+    }
+
 
 }

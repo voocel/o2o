@@ -5,7 +5,7 @@ use think\Db;
 use Map;
 class Deal extends Controller
 {
-    //显示分类列表
+    //显示团购列表
     public function index()
     {
         $data = input('get.');
@@ -52,6 +52,41 @@ class Deal extends Controller
            'cityArrs'      => $cityArrs,
         ]);
         
+    }
+
+        //团购申请列表
+    public function apply()
+    {
+        $deal = model('Deal')->getDealByStatus();
+
+        $categorys = model('category')->getNormalCategorysByParentId($parentId=0);
+        $citys = model('city')->getNormalCitys();
+        $cityArrs = $categoryArrs = [];
+        foreach ($categorys as $category) {
+            $categoryArrs[$category->id] = $category->name;
+        }
+        foreach ($citys as $city) {
+            $cityArrs[$city->id] = $city->name;
+        }
+        return $this->fetch('',['deal'=>$deal,'categoryArrs'  => $categoryArrs,'cityArrs' => $cityArrs,]);
+    }
+
+        //修改状态
+    public function status(){
+        $data = request()->get();
+        // $validate = validate('Bis');
+        // if(!$validate->scene('status')->check($data)){
+        //     $this->error($validate->getError());
+        // }
+        $deal = model('Deal')->save(['status'=>$data['status']],['id'=>$data['id']]);
+
+        if($deal){
+            //发送邮件通知
+            //status 1=>审核通过, 2=>不通过, -1=>删除
+            $this->success('状态更新成功!');
+        }else{
+            $this->error('状态更新失败!');
+        }
     }
     
    

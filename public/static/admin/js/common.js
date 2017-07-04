@@ -44,7 +44,7 @@ $('.category_id').change(function(){
         if(result.status==200){
             data=result.data;
             category_html = '';
-           $(data).each(function(){
+           $(data.data).each(function(){
                category_html +="<input name='se_category_id[]' type='checkbox' id='checkbox-moban' value='"+this.id+"'/>"+this.name;
                category_html +="<label for='checkbox-moban'>&nbsp;</label>";
            });
@@ -55,7 +55,6 @@ $('.category_id').change(function(){
     },'json');
     
 });
-
 
 function selecttime(flag){
     if(flag==1){
