@@ -39,7 +39,7 @@
 					<td>{$vo.faren_tel}</td>
                     <td class="text-l">{$vo.create_time}</td>
 					<td>{$vo.status|status}</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url(\'bis/detail\',[\'id\'=>$vo.id])}','1','900','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+					<td class="f-14"><a title="查看详情" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url(\'bis/detail\',[\'id\'=>$vo.id])}','1','900','480')" style="text-decoration:none"><i class="Hui-iconfont">查看详情</i></a>
 						<a title="删除" href="javascript:;" onclick="system_category_del('{:url(\'bis/status\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
 						<a title="不通过" href="{:url('bis/status',['id'=>$vo.id,'status'=>2])}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">不通过</i></a></td>
 				</tr>

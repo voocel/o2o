@@ -2,21 +2,20 @@
 namespace app\admin\controller;
 use think\Controller;
 
-class Bis extends Controller
+class Location extends Controller
 {
-    //审核通过的商户列表
+    //审核通过的门店列表
     public function index(){
-        $bis = model('Bis')->getBisByStatus(1);
-        return $this->fetch('',['bis'=>$bis]);
+        $location = model('BisLocation')->getLocationByStatus(1);
+        return $this->fetch('',['location'=>$location]);
     }
-    //入驻申请列表
+    //门店申请列表
     public function apply()
     {
-        $bis = model('Bis')->getBisByStatus();
-        return $this->fetch('',['bis'=>$bis]);
+        $location = model('BisLocation')->getLocationByStatus();
+        return $this->fetch('',['location'=>$location]);
     }
 
-    //编辑页面
     public function detail(){
        $id = input('get.id');
        //echo $id;exit();
@@ -28,16 +27,11 @@ class Bis extends Controller
        //获取一级分类数据
        $category = model('Category')->getNormalCategorysByParentId($parentId=0);
        //获取商户数据
-       $bisData = model('Bis')->get($id);
-       //var_dump($bisData);exit();
-       $locationData = model('BisLocation')->get(['bis_id'=>$id,'is_main'=>1]);
-       $accountData = model('BisAccount')->get(['bis_id'=>$id,'is_main'=>1]);
+       $locationData = model('BisLocation')->get(['id'=>$id,'is_main'=>0]);
        return $this->fetch('',[
                     'city'=>$city,
                     'category'=>$category,
-                    'bisData' => $bisData,
                     'locationData' => $locationData,
-                    'accountData'  => $accountData,
                 ]);        
     }
 
@@ -48,10 +42,10 @@ class Bis extends Controller
         // if(!$validate->scene('status')->check($data)){
         //     $this->error($validate->getError());
         // }
-        $res = model('Bis')->save(['status'=>$data['status']],['id'=>$data['id']]);
-        $location = model('BisLocation')->save(['status'=>$data['status']],['id'=>$data['id'],'is_main'=>1]);
-        $account = model('BisAccount')->save(['status'=>$data['status']],['id'=>$data['id'],'is_main'=>1]);
-        if($res&&$location&&$account){
+
+        $location = model('BisLocation')->save(['status'=>$data['status']],['id'=>$data['id'],'is_main'=>0]);
+
+        if($location){
             //发送邮件通知
             //status 1=>审核通过, 2=>不通过, -1=>删除
             $this->success('状态更新成功!');

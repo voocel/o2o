@@ -21,27 +21,23 @@
 				<tr class="text-c">
 					<th width="25"><input type="checkbox" name="" value=""></th>
 					<th width="80">ID</th>
-					<th width="100">商户名称</th>
-					<th width="30">法人</th>
-                    <th width="150">联系电话</th>
-					<th width="60">申请时间</th>
+					<th width="100">分店名称</th>
+					<th width="30">申请时间</th>
 					<th width="60">状态</th>
 					<th width="100">操作</th>
 				</tr>
 			</thead>
 			<tbody>
-				{volist name="bis" id='vo'}
+				{volist name="location" id='vo'}
 				<tr class="text-c">
 					<td><input type="checkbox" name="" value=""></td>
 					<td>{$vo.id}</td>
 					<td>{$vo.name}</td>
-					<td>{$vo.faren}</td>
-					<td>{$vo.faren_tel}</td>
-                    <td class="text-l">{$vo.create_time}</td>
-					<td><a href="{:url('bis/status',['id'=>$vo.id,'status'=>1])}" title="点击修改状态">{$vo.status|status}</a></td>
-					<td class="f-14"><a title="查看详情" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url(\'bis/detail\',[\'id\'=>$vo.id])}','1','900','480')" style="text-decoration:none"><i class="Hui-iconfont">查看详情</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del('{:url(\'bis/status\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
-						<a title="不通过" href="{:url('bis/status',['id'=>$vo.id,'status'=>2])}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">不通过</i></a></td>
+                    <td>{$vo.create_time}</td>
+					<td><a href="{:url('location/status',['id'=>$vo.id,'status'=>1])}" title="点击修改状态">{$vo.status|status}</a></td>
+					<td class="f-14"><a title="查看详情" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url(\'location/detail\',[\'id\'=>$vo.id])}','1','900','480')" style="text-decoration:none"><i class="Hui-iconfont">查看详情</i></a>
+						<a title="删除" href="javascript:;" onclick="system_category_del('{:url(\'location/status\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+						<a title="不通过" href="{:url('location/status',['id'=>$vo.id,'status'=>2])}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">不通过</i></a></td>
 				</tr>
 				{/volist}
 			</tbody>
@@ -49,7 +45,7 @@
 	</div>
 </div>
 <!--分页-->
-{:pagination($bis)}
+{:pagination($location)}
 <!--_footer 作为公共模版分离出去-->
 {include file="public/_footer"}
 <!--/_footer 作为公共模版分离出去-->
