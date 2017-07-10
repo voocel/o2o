@@ -10,4 +10,9 @@ class BaseModel extends Model{
         $this->save($data);
         return $this->id;
     }
+    
+    //根据id更新
+    public function updateById($data,$id){
+       return $this->allowField(true)->save($data,['id'=>$id]);
+    }
 }
