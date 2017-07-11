@@ -2,70 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="__STATIC__/admin/hui/static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-    <link href="__STATIC__/admin/hui/static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
-    <link href="__STATIC__/admin/hui/static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="__STATIC__/admin/hui/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
-    <title>前台注册</title>
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>注册</title>
+    <link rel="stylesheet" href="__STATIC__/index/css/base.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/register.css" />
+    <script type="text/javascript" src="__STATIC__/index/js/html5shiv.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/respond.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/jquery-1.11.3.min.js"></script>
 </head>
 <body>
- 
-  <div id="loginform" class="loginBox">
-    <form class="form form-horizontal" action="" method="post">
-      <div class="row cl">
-        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
-        <div class="formControls col-xs-8">
-          <input id="" name="username" type="text" placeholder="账户" class="input-text size-L">
+    <div class="wrapper">
+        <div class="head">
+            <ul>  
+                <li><a href="index.html"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></li>
+                <li class="divider"></li>
+                <li><a href="index.html"></a></li>
+            </ul>
+            <div class="login-link">
+                <span>我已注册，现在就</span>
+                <a href="{:url('user/login')}">登录</a>
+            </div>
         </div>
-      </div>
-      <div class="row cl">
-        <label class="form-label col-xs-3"><i class="Hui-iconfont">邮箱</i></label>
-        <div class="formControls col-xs-8">
-          <input id="" name="email" type="text" placeholder="邮箱" class="input-text size-L">
-        </div>
-      </div>
-      <div class="row cl">
-        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
-        <div class="formControls col-xs-8">
-          <input id="" name="password" type="password" placeholder="密码" class="input-text size-L">
-        </div>
-      </div>
 
-      <div class="row cl">
-        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
-        <div class="formControls col-xs-8">
-          <input id="" name="repassword" type="password" placeholder="确认密码" class="input-text size-L">
+        <div class="content">
+            <form action="" method="post">
+                <p class="pass-form-item">
+                    <label class="pass-label">用户名</label>
+                    <input type="text" name="userName" class="pass-text-input" placeholder="请设置用户名">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">邮箱号</label>
+                    <input type="text" name="email" class="pass-text-input" placeholder="可用于接受团购券账号和密码便于消费">
+                </p>
+                
+                <p class="pass-form-item">
+                    <label class="pass-label">密码</label>
+                    <input type="text" name="password" class="pass-text-input" placeholder="请设置登录密码">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">确认密码</label>
+                    <input type="text" name="repassword" class="pass-text-input" placeholder="请设置登录密码">
+                </p>
+                <p>
+                  <img id="img" onclick="reimg()" style="cursor:pointer" src="{:captcha_src()}" alt="">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">验证码</label>
+                    <input type="text" name="verifyCode" class="pass-text-input " placeholder="请输入验证码">
+                </p>
+                
+                <p class="pass-form-item">
+                    <input type="submit" value="注册" class="pass-button">
+                </p>
+            </form>
+           
         </div>
-      </div>
-      <div class="row cl">
-          <label class="form-label col-xs-3"><i class="Hui-iconfont"></i></label>
-          <div class="formControls col-xs-8">
-               {:captcha_img()}
-          </div>
-      </div>
-      <div class="row cl">
-        <label class="form-label col-xs-3"><i class="Hui-iconfont">验证码</i></label>
-        <div class="formControls col-xs-8">
-          <input id="" name="verifyCode" type="text" placeholder="验证码" class="input-text size-L" style="width:120px">
-        </div>
-      </div>
+    </div>
 
-      <div class="row cl">
-        <div class="formControls col-xs-8 col-xs-offset-3">
-          <input name="" type="submit" class="btn btn-success radius size-L mt-10 ml-50" value="&nbsp;注&nbsp;&nbsp;&nbsp;&nbsp;册&nbsp;">
-          <input name="" type="reset" class="btn btn-default radius size-L mt-10 ml-20" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
-        </div>
-      </div>
-    </form>
-  </div>
-  
-  <script>
-    function reimg(){
-        var img =document.getElementById("img");
-        img.src = "{:captcha_src()}?rand=" + Math.random();
-    }
-  </script>
+    <script>
+        function reimg(){
+            var img =document.getElementById("img");
+            img.src = "{:captcha_src()}?rand=" + Math.random();
+        }
+    </script>
 </body>
 </html>

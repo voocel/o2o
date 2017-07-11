@@ -1,0 +1,181 @@
+.wrapper{
+    width: 100%;
+}
+.head{
+    width: 980px;
+    height: 75px;
+    padding: 0 75px;
+    border-bottom: 1px solid #eee;
+    margin: 0 auto 20px;
+    overflow: hidden;
+}
+.head ul{
+    float: left;
+    overflow: hidden;
+}
+.head ul li{
+    float: left;
+}
+.head ul li:first-child a{
+    margin-top: 15px;
+    display: block;
+}
+.head ul .divider{
+    width: 1px;
+    height: 25px;
+    background: #ccc;
+    margin: 34px 0 0 15px;
+}
+.head ul li:nth-child(3) a{
+    font-size: 20px;
+    color: #222;
+    display: block;
+    margin: 35px 0 0 15px;
+}
+.login-link{
+    float: right;
+}
+.login-link span{
+    color: #666;
+    margin-top: 35px;
+    float: left;
+}
+.login-link a{
+    float: right;
+    font-weight: 700;
+    color: #666;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 58px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 26px;
+    margin-left: 7px;
+}
+.content{
+    width: 980px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.content form{
+    width: 435px;
+    height: 432px;
+    margin-top: 60px;
+    float: left;
+}
+.content form .pass-form-item{
+    clear: both;
+    zoom: 1;
+    width: 435px;
+}
+.content form .pass-label{
+    display: block;
+    float: left;
+    height: 62px;
+    width: 65px;
+    margin-right: 10px;
+    line-height: 42px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 700;
+    text-align: right;
+    clear: both;
+}
+.content form .pass-text-input{
+    display: block;
+    position: relative;
+    float: left;
+    height: 16px;
+    width: 328px;
+    padding: 11px 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #666;
+}
+.pass-text-check{
+    margin-left: 75px;
+    vertical-align: middle;
+}
+.accept{
+    color: #666;
+    font-size: 12px;
+    margin-left: 5px;
+}
+.content form .verifyCode{
+    width: 200px;
+    float: left;
+}
+.content form .getCode{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    background: none;
+    color: #fa6790;
+    border: 1px solid #fa6790;
+    outline: none;
+    font-size: 14px;
+    float: right;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.content form .pass-button{
+    background-color: #fa6790;
+    display: block;
+    width: 350px;
+    margin-left: 75px;
+    height: 50px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #fff;
+    background-image: none;
+    border-radius: 3px;
+    border: 0;
+}
+.reg-sms {
+    width: 258px;
+    height: 208px;
+    border: 1px solid #d1eeff;
+    background-color: #f5fbff;
+    margin-top: 40px;
+    float: right;
+}
+.reg-sms .reg-sms-title {
+    margin: 0 10px;
+    padding-left: 30px;
+    height: 50px;
+    line-height: 50px;
+    background: url("../image/phone.png") left center no-repeat;
+    border-bottom: 1px solid #e6edf2;
+    font-size: 14px;
+    color: #666;
+}
+.reg-sms .reg-sms-p {
+    margin: 0 10px;
+}
+.reg-sms .reg-sms-p-text {
+    color: #666;
+    font-size: 12px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.reg-sms .reg-sms-p-warn {
+    font-size: 14px;
+    color: #f18300;
+    font-weight: 700;
+}
+.reg-sms .reg-sms-p-last {
+    color: #666;
+    font-size: 12px;
+    margin-top: 5px;
+}
+.foot {
+    width: 980px;
+    text-align: center;
+    color: #7a77c8;
+    margin: 80px auto 20px;
+}

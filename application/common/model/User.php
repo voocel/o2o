@@ -16,8 +16,8 @@ class User extends BaseModel
 
     //根据用户名获取用户信息
     public function getUserByUsername($username){
-        if($username){
-            exception("用户名不合法!");
+        if(!$username){
+            exception("用户名不合法,不能为空!");
         }
         $where = ['username'=>$username];
         return $this->where($where)->find();

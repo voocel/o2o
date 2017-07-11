@@ -2,4 +2,5 @@
 composer.lock
 *.log
 thinkphp
-/public/upload/
+public/upload/
+public/ueditor/php/upload

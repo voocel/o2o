@@ -7,7 +7,7 @@ class User extends Controller
     {        
         $user = session('o2o_user','','o2o');
         if($user){
-            $this->redirect(url('index/index'));
+            $this->redirect('index/index');
         }
         return $this->fetch();
         
@@ -23,6 +23,7 @@ class User extends Controller
                 $data['code'] = mt_rand(100,100000);
                 $data['password'] = md5($data['password'].$data['code']);
                 try{
+                    //user表中username和email为唯一索引，若传入的值重复则会抛出异常
                     $res = model("user")->add($data);
                 }catch(\Exception $e){
                     $this->error($e->getMessage());
@@ -50,7 +51,7 @@ class User extends Controller
         try{
             $user = model("user")->getUserByUsername($data['username']);
         }catch(\Exception $e){
-            $this->error($e->getMessage);
+            $this->error($e->getMessage());
         }
         if(!$user||$user->status!==1){
             $this->error("该用户不存在!");
@@ -68,6 +69,6 @@ class User extends Controller
 
     public function logout(){
         session(null,'o2o');
-        $this->redirect(url("user/login"));
+        $this->redirect("user/login");
     }
 }
