@@ -55,6 +55,36 @@ class Category extends Model
        return $this->where($where)->order($order)->paginate();
     }
 
+    public function getNormalRecommendCategoryByParentId($id=0,$limit=5){
+        $where = array(
+            'status'   => 1,
+            'parent_id'=> $id
+        );
+        $order = array(
+            'listorder'  => 'desc',
+            'id'         => 'desc'
+        );
+
+        $res = $this->where($where)->order($order);
+        if($limit){
+            $res = $res->limit($limit);
+        }
+        return $res->select();
+    }
+
+    public function getNormalCategoryIdParentId($ids){
+        $where = array(
+            'parent_id'   => ['in',implode(',',$ids)],
+            'status'   => 1,
+        );
+        $order = array(
+            'listorder'  => 'desc',
+            'id'         => 'desc'
+        );
+        $res = $this->where($where)->order($order)->select();
+        return $res;
+    }
+
 
 
     

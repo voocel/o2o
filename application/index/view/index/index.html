@@ -17,38 +17,29 @@
     <div class="header-bar">
         <div class="header-inner">
             <ul class="father">
-                <li><a>北京</a></li>
+                <li><a>{$city.name}</a></li>
                 <li>|</li>
                 <li class="city">
                     <a>切换城市<span class="arrow-down-logo"></span></a>
                     <div class="city-drop-down">
                         <h3>热门城市</h3>
                         <ul class="son">
-                            <li><a href="">北京</a></li>
-                            <li><a href="">上海</a></li>
-                            <li><a href="">广州</a></li>
-                            <li><a href="">深圳</a></li>
-                            <li><a href="">天津</a></li>
-                            <li><a href="">杭州</a></li>
-                            <li><a href="">西安</a></li>
-                            <li><a href="">成都</a></li>
-                            <li><a href="">郑州</a></li>
-                            <li><a href="">厦门</a></li>
-                            <li><a href="">青岛</a></li>
-                            <li><a href="">太原</a></li>
-                            <li><a href="">重庆</a></li>
-                            <li><a href="">武汉</a></li>
-                            <li><a href="">南京</a></li>
-                            <li><a href="">沈阳</a></li>
-                            <li><a href="">济南</a></li>
-                            <li><a href="">哈尔滨</a></li>
+                            {volist name="citys" id="vo"}
+                            <li><a href="{:url('index/index',['city'=>$vo.uname])}">{$vo.name}</a></li>
+                            {/volist}
                         </ul>
                         
                     </div>
                 </li>
-                <li><a href="register.html">注册</a></li>
+                {if condition="$user"}
+                <li>欢迎您：{$user->username}</li>
+                <li><a href="{:url('user/logout')}">注销</a></li>
+                {else /}
+                <li><a href="{:url('user/register')}">注册</a></li>
                 <li>|</li>
-                <li><a href="login.html">登录</a></li>
+                <li><a href="{:url('user/login')}">登录</a></li>
+                {/if}
+                <li><a href="{:url('bis/index/index')}">商户中心</a></li>
             </ul>
         </div>
     </div>
@@ -64,317 +55,32 @@
                 <li class="nav-item">
                     <span class="item">全部分类</span>
                     <div class="left-menu">
+                        {volist name="cats" id="cat"}
                         <div class="level-item">
                             <div class="first-level">
                                 <dl>
-                                    <dt class="title"><a href="" target="_top">美食</a></dt>
-                                    <dd><a href="" target="_top" class="">精选品牌</a></dd>
-                                    <dd><a href="" target="_top" class="">小吃快餐</a></dd>
+                                    <dt class="title"><a href="{:url('list/index',['id'=>$key])}" target="_top">{$cat[0]}</a></dt>
+                                    {volist name="cat[1]" id="vo" length='2'}
+                                    <dd><a href="{:url('list/index',['id'=>$vo.id])}" target="_top" class="">{$vo.name}</a></dd>
+                                    {/volist}
                                 </dl>
                             </div>
                             <div class="second-level">
                                 <div class="section">
                                     <div class="section-item clearfix no-top-border">
-                                        <h3>热门分类</h3>
+                                        <h3>其他分类</h3>
                                         <ul>
-                                            <li><a class="hot">精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
+                                            {volist name="cat[1]" id="vo"}
+                                            <li><a href="{:url('list/index',['id'=>$vo.id])}" target="_blank" class="">{$vo.name}</a></li>
+                                            {/volist}
                                         </ul>
                                     </div>
-                                    <div class="section-item clearfix">
-                                        <h3>热门分类</h3>
-                                        <ul>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                        </ul>
-                                    </div>
+                          
                                     
                                 </div>
                             </div>
                         </div>
-                        <div class="level-item">
-                            <div class="first-level">
-                                <dl>
-                                    <dt class="title"><a href="" target="_top">电影</a></dt>
-                                    <dd><a href="" target="_top" class="">订座</a></dd>
-                                    <dd><a href="" target="_top" class="">电影票团购</a></dd>
-                                </dl>
-                            </div>
-                            <div class="second-level">
-                                <div class="section">
-                                    <div class="section-item clearfix no-top-border">
-                                        <h3>热门分类</h3>
-                                        <ul>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="section-item clearfix">
-                                        <h3>热门分类</h3>
-                                        <ul>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                        </ul>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="level-item">
-                            <div class="first-level">
-                                <dl>
-                                    <dt class="title"><a href="" target="_top">休闲娱乐</a></dt>
-                                    <dd><a href="" target="_top" class="">ktv</a></dd>
-                                    <dd><a href="" target="_top" class="">温泉洗浴</a></dd>
-                                </dl>
-                            </div>
-                            <div class="second-level">
-                                <div class="section">
-                                    <div class="section-item clearfix no-top-border">
-                                        <ul>
-                                            <li><a class="hot">精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="section-item clearfix">
-                                        <ul>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                        </ul>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="level-item">
-                            <div class="first-level">
-                                <dl>
-                                    <dt class="title"><a href="" target="_top">电影</a></dt>
-                                    <dd><a href="" target="_top" class="">订座</a></dd>
-                                    <dd><a href="" target="_top" class="">电影票团购</a></dd>
-                                </dl>
-                            </div>
-                            <div class="second-level">
-                                <div class="section">
-                                    <div class="section-item clearfix no-top-border">
-                                        <h3>热门分类</h3>
-                                        <ul>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="section-item clearfix">
-                                        <h3>热门分类</h3>
-                                        <ul>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                        </ul>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="level-item">
-                            <div class="first-level">
-                                <dl>
-                                    <dt class="title"><a href="" target="_top">电影</a></dt>
-                                    <dd><a href="" target="_top" class="">订座</a></dd>
-                                    <dd><a href="" target="_top" class="">电影票团购</a></dd>
-                                </dl>
-                            </div>
-                            <div class="second-level">
-                                <div class="section">
-                                    <div class="section-item clearfix no-top-border">
-                                        <h3>热门分类</h3>
-                                        <ul>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="section-item clearfix">
-                                        <h3>热门分类</h3>
-                                        <ul>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                            <li><a>精选品牌</a></li>
-                                        </ul>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        {/volist}
                     </div>
                 </li>
                 <li class="nav-item"><a class="item first active">首页</a></li>
