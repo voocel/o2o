@@ -97,8 +97,9 @@
                     <a href="#" class="slide-prev"><i class="slide-arrow-left"></i></a>
                     <a href="#" class="slide-next"><i class="slide-arrow-right"></i></a>
                     <ul class="slideshow">
-                        <li><a href="" class="item-large"><img class="ad-pic" src="__STATIC__/index/image/a1ec08fa513d2697b85e74c35dfbb2fb4216d89b.jpg" /></a></li>
-                        <li><a href="" class="item-large"><img class="ad-pic" src="__STATIC__/index/image/63d0f703918fa0ec7c51e2912e9759ee3c6ddb9c.jpg" /></a></li>
+                        {volist name="slideshows" id="vo"}
+                        <li><a href="{$vo.url}" class="item-large"><img class="ad-pic" src="{$vo.image}" /></a></li>
+                        {/volist}
                     </ul>
                 </div>
                 <div class="list-container">
@@ -109,7 +110,7 @@
         <div class="right-sidebar">
             <div class="right-ad">
                 <ul class="slidepic">
-                    <li><a><img src="__STATIC__/index/image/72f082025aafa40f9205eb43a364034f79f01968.jpg" /></a></li>
+                    <li><a><img src="{$slidepic.image}" /></a></li>
                 </ul>
             </div>
             
