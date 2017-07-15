@@ -8,6 +8,15 @@ class Index extends Base
         $slideshows = model('featured')->getFeaturedsByType(0);
         $slidepic = model("featured")->where(['status'=>['neq',-1],'type'=>1])->order(["id"=>'desc'])->find();
         
-        return $this->fetch('',['slideshows'=>$slideshows,"slidepic"=>$slidepic]);
+        //根据栏目id和城市id获取商品
+        $deals = model("deal")->getNormalDealByCategoryCityId(10,$this->city->id);
+        //获取四个子分类
+        $foodcate = model('category')->getNormalRecommendCategoryByParentId(10,10);
+        return $this->fetch('',[
+            'slideshows' => $slideshows,
+            "slidepic"   => $slidepic,
+            'deals'      => $deals,
+            'foodcate'   => $foodcate
+            ]);
     }
 }

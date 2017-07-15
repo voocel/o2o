@@ -17,6 +17,9 @@ class Base extends Controller
         $this->assign('citys',$citys);
         $this->assign('city',$this->city);
         $this->assign('user',$this->getLoginUser());   //用户信息
+        //根据不同页面传递不同的css
+        $this->assign('controller',strtolower(request()->controller()));
+        $this->assign('title','团购首页');
         
     }
 
