@@ -1,0 +1,129 @@
+{include file="public/head,public/nav"}
+    <div class="page-body">
+        <div class="filter-bg">
+            <div class="filter-wrap">
+                <div class="w-filter-ab-test">
+                    <div class="w-filter-top-nav clearfix" style="margin:12px">
+                        
+                        
+                    </div>
+                    
+                    <div class="filter-wrapper">
+                        <div class="normal-filter ">
+                            <div class="w-filter-normal-ab  filter-list-ab">
+                                <h5 class="filter-label-ab">分类</h5>
+                                <span class="filter-all-ab">
+                                    <a href="{:url('lists/index')}" class="w-filter-item-ab  item-all-auto-ab"><span class="item-content {if condition='$id eq 0'} filter-active-all-ab {/if}">全部</span></a>
+                                </span>
+                                <div class="j-filter-items-wrap-ab filter-items-wrap-ab">
+                                    <div class="j-filter-items-ab filter-items-ab filter-content-ab">
+                                        {volist name="categorys" id="vo"}
+                                        <a href="{:url('lists/index',['id'=>$vo.id])}" class="w-filter-item-ab "><span class="item-content {if condition='$vo.id eq $categoryParentId'}filter-active-all-ab{/if}">{$vo.name}</span></a>
+                                        {/volist}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {if condition="$sedcategorys"}
+                    <div class="filter-wrapper">
+                        <div class="normal-filter ">
+                            <div class="w-filter-normal-ab  filter-list-ab">
+                                <h5 class="filter-label-ab">子分类</h5>
+                                <span class="filter-all-ab">
+                                    
+                                </span>
+                                <div class="j-filter-items-wrap-ab filter-items-wrap-ab">
+                                    <div class="j-filter-items-ab filter-items-ab filter-content-ab">
+                                        {volist name="sedcategorys" id="vo"}
+                                        <a href="{:url('lists/index',['id'=>$vo.id])}" class="w-filter-item-ab"><span class="item-content {if condition='$vo.id eq $id'}filter-active-all-ab{/if}">{$vo.name}</span></a>
+                                        {/volist}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {/if}
+                </div>
+                <div class="w-sort-bar">
+                    <div class="bar-area" style="position: relative; left: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; top: 0px;">
+                        <span class="sort-area">
+                            <a class="sort-default {if condition='$orderflag eq ""'}sort-default-active{/if}">默认</a>
+                            <a href="{:url('lists/index',['id'=>$id,'order_sales'=>1])}" class="sort-item sort-down {if condition='$orderflag eq "order_sales"'}sort-default-active{/if}" title="点击按销量降序排序">销量↓</a>
+                            <a href="{:url('lists/index',['id'=>$id,'order_price'=>1])}" class="sort-item price-default price {if condition='$orderflag eq "order_price"'}sort-default-active{/if}" title="点击按价格降序排序">价格↓</a>
+                            
+                            <a href="{:url('lists/index',['id'=>$id,'order_time'=>1])}" class="sort-item sort-up {if condition='$orderflag eq "order_time"'}sort-default-active{/if}" title="发布时间由近到远">最新发布↑</a>
+                        </span>
+                        
+                    </div>
+                </div>
+                <ul class="itemlist eight-row-height">
+                    {volist name="deals" id="vo"}
+                    <li class="j-card">
+                        <a>
+                            <div class="imgbox">
+                                <ul class="marketing-label-container">
+                                    <li class="marketing-label marketing-free-appoint"></li>
+                                </ul>
+                                <div class="range-area">
+                                    <div class="range-bg"></div>
+                                    <div class="range-inner">
+                                        <span class="white-locate"></span>
+                                        安贞 六里桥 丽泽桥 安定门 劲松 昌平镇 航天桥 通州区 通州北苑
+                                    </div>
+                                </div>
+                                <div class="borderbox">
+                                   <a href="{:url('detail/index',['id'=>$vo.id])}"><img src="{$vo.image}" /></a>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="contentbox">
+                            <a href="{:url('detail/index',['id'=>$vo.id])}" target="_blank">
+                                <div class="header">
+                                    <h4 class="title ">【{$vo.location_ids|countLocation}】店通用</h4>
+                                    <div class="collected">精选</div>
+                                </div>
+                                <p>{$vo.name}</p>
+                            </a>
+                            <div class="add-info"></div>
+                            <div class="pinfo">
+                                <span class="price"><span class="moneyico">¥</span>{$vo.current_price}</span>
+                                <span class="ori-price">价值<span class="price-line">¥<span>{$vo.origin_price}</span></span></span>
+                            </div>
+                            <div class="footer">
+                                <span class="comment">4.6分</span><span class="sold">已售{$vo.buy_count}</span>
+                                <div class="bottom-border"></div>
+                            </div>
+                        </div>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+        {:pagination($deals)}
+        <div class="content-wrap">共<span style="color: #ff4883">4321</span>条</div>
+    </div>
+
+    <div class="footer-content">
+        <div class="copyright-info">
+            
+        </div>
+    </div>
+    <script>
+        $(".tab-item-wrap").click(function(){
+            var index = $(".tab-item-wrap").index(this);
+            $(".tab-item-wrap").removeClass("selected");
+            $(".district-cont-wrap").css({display: "none"});
+            $(this).addClass("selected");
+            $(".district-cont-wrap").eq(index).css({display: "block"});
+        });
+
+        $(".sort-area a").click(function(){
+            $(".sort-area a").removeClass("sort-default-active").css({color: "#666"});
+            $(this).addClass("sort-default-active").css({color: "#ff4883"});
+        });
+    </script>
+</body>
+</html>

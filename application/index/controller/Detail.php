@@ -10,6 +10,7 @@ class Detail extends Base
         }
         //根据id查询商品数据
         $deal=model("deal")->get($id);
+        $bisId = $deal->bis_id;
         if(!$deal||$deal->status!==1){
             $this->error("该商品不存在!");
         }
@@ -47,7 +48,7 @@ class Detail extends Base
             'deal'      => $deal,
             'overplus'  => $deal->total_count-$deal->buy_count,
             'flag'      => $falg,
-            
+            'mapstr'    => $locations[0]['xpoint'].','.$locations[0]['ypoint']
             ]);
     }
 }

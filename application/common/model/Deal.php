@@ -41,5 +41,20 @@ class Deal extends BaseModel{
         return $res;
     }
 
+    public function getDealByConditions($where,$orders){
+        if(!empty($orders['order_salse'])){
+            $order['buy_count'] = 'desc';
+        }
+        if(!empty($orders['order_price'])){
+            $order['current_price'] = 'desc';
+        }
+        if(!empty($orders['order_time'])){
+            $order['create_time'] = 'desc';
+        }
+        $order['id'] = 'desc';
+        $res = $this->where($where)->order($order)->paginate(2);
+        return $res;
+    }
+
 
 }

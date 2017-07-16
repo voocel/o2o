@@ -45,7 +45,8 @@ function pagination($obj){
     if(empty($obj)){
         return '';
     }
-    return '<div class="cl pd-5 bg-1 bk-gray mt-20 o2o-page">'.$obj->render().'</div>';
+    $params = request()->param();
+    return '<div class="cl pd-5 bg-1 bk-gray mt-20 o2o-page">'.$obj->appends($params)->render().'</div>';
 }
 
 function getSeCityName($path){

@@ -8,9 +8,9 @@
                         <div class="level-item">
                             <div class="first-level">
                                 <dl>
-                                    <dt class="title"><a href="{:url('list/index',['id'=>$key])}" target="_top">{$cat[0]}</a></dt>
+                                    <dt class="title"><a href="{:url('lists/index',['id'=>$key])}" target="_top">{$cat[0]}</a></dt>
                                     {volist name="cat[1]" id="vo" length='2'}
-                                    <dd><a href="{:url('list/index',['id'=>$vo.id])}" target="_top" class="">{$vo.name}</a></dd>
+                                    <dd><a href="{:url('lists/index',['id'=>$vo.id])}" target="_top" class="">{$vo.name}</a></dd>
                                     {/volist}
                                 </dl>
                             </div>
@@ -20,7 +20,7 @@
                                         <h3>其他分类</h3>
                                         <ul>
                                             {volist name="cat[1]" id="vo"}
-                                            <li><a href="{:url('list/index',['id'=>$vo.id])}" target="_blank" class="">{$vo.name}</a></li>
+                                            <li><a href="{:url('lists/index',['id'=>$vo.id])}" target="_blank" class="">{$vo.name}</a></li>
                                             {/volist}
                                         </ul>
                                     </div>
