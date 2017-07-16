@@ -50,6 +50,7 @@ class Lists extends Base
         }else{
             $orderflag = '';
         }
+        $where['city_id'] = $this->city->id; 
         $deals = model('deal')->getDealByConditions($where,$order);
         return $this->fetch('',[
             'categorys'  => $categorys,

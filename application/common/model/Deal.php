@@ -41,7 +41,7 @@ class Deal extends BaseModel{
         return $res;
     }
 
-    public function getDealByConditions($where,$orders){
+    public function getDealByConditions($where=[],$orders){
         if(!empty($orders['order_salse'])){
             $order['buy_count'] = 'desc';
         }
@@ -52,7 +52,19 @@ class Deal extends BaseModel{
             $order['create_time'] = 'desc';
         }
         $order['id'] = 'desc';
-        $res = $this->where($where)->order($order)->paginate(2);
+        $wheres[] = 'end_time>'.time();
+        if(!empty($where['se_category_id'])){
+            $wheres[] = " find_in_set(".$where['se_category_id'].",se_category_id)";
+        }
+        if(!empty($where['category_id'])){
+            $wheres[] = 'category_id='.$where['category_id'];
+        }
+        if(!empty($where['city_id'])){
+            $wheres[] = 'city_id='.$where['city_id'];
+        }
+        $wheres[] = 'status=1';
+        $res = $this->where(implode(' AND ',$wheres))->order($order)->paginate(3);
+        // echo $this->getLastSql();exit;
         return $res;
     }
 
