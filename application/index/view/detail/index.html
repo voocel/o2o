@@ -105,7 +105,7 @@
                                         {if condition="$flag eq 1"}
                                         <a style="background:#ccc;border-bottom:#ccc" class="btn-buy btn-buy-qrnew j-btn-buy btn-hit">立即抢购</a>
                                         {else}                         
-                                        <a href="" class="btn-buy btn-buy-qrnew j-btn-buy btn-hit">立即抢购</a>
+                                        <a href="" class="o2o_click btn-buy btn-buy-qrnew j-btn-buy btn-hit">立即抢购</a>
                                         {/if}
                                     </div>
                                 </div>
@@ -334,6 +334,12 @@
             $(".branch").removeClass("branch-open").addClass("branch-close");
             $(this).removeClass("branch-close").addClass("branch-open");
         });
+
+        $(".o2o_click").click(function(){
+            var count = $(".buycount-ctrl input").val();
+            url = "{:url('order/confirm',['id'=>$deal.id])}"+"&count="+count;
+            window.open(url);
+        })
     </script>
 </body>
 </html>

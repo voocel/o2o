@@ -121,7 +121,7 @@ CREATE TABLE `o2o_deal`(
     `id` int(11) unsigned  NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(100) NOT NULL DEFAULT '',
     `category_id` int(11) unsigned NOT NULL DEFAULT 0,
-    `se_category_id` int(11) unsigned NOT NULL DEFAULT 0,
+    `se_category_id` VARCHAR(100)  NOT NULL DEFAULT '',
     `bis_id` int(11) unsigned NOT NULL DEFAULT 0,
     `location_ids` VARCHAR(200) NOT NULL DEFAULT '',
     `image` VARCHAR(100) NOT NULL DEFAULT '',
@@ -184,4 +184,28 @@ CREATE TABLE `o2o_featured`(
     `create_time` int(11) unsigned NOT NULL DEFAULT 0,
     `update_time` int(11) unsigned NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`)
+)ENGINE=Innodb AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
+
+#订单表
+CREATE TABLE `o2o_order`(
+    `id` int(11) unsigned  NOT NULL AUTO_INCREMENT,
+    `out_trade_no` VARCHAR(100) NOT NULL DEFAULT '' comment'订单编号',
+    `transaction_id` VARCHAR(100) NOT NULL DEFAULT '' comment'微信订单编号',
+    `user_id` int(11) unsigned NOT NULL DEFAULT 0,
+    `username` VARCHAR(50) NOT NULL DEFAULT '',
+    `pay_time` VARCHAR(20) NOT NULL DEFAULT '',
+    `payment_id` tinyint(1) NOT NULL DEFAULT 1 comment'支付方式',
+    `deal_id` int(11) unsigned NOT NULL DEFAULT 0,
+    `deal_count` int(11) unsigned NOT NULL DEFAULT 0,
+    `pay_status` tinyint(1) NOT NULL DEFAULT 1 comment'支付状态 0:未支付 1:支付成功 2:支付失败',
+    `total_price` decimal(20,2) NOT NULL DEFAULT '0.00',
+    `pay_amount` decimal(20,2) NOT NULL DEFAULT '0.00' comment'微信支付总额',
+    `status` tinyint(1) NOT NULL DEFAULT 1,
+    `referer` VARCHAR(255) NOT NULL DEFAULT '' comment'订单来源url',
+    `create_time` int(11) unsigned NOT NULL DEFAULT 0,
+    `update_time` int(11) unsigned NOT NULL DEFAULT 0,
+    PRIMARY KEY (`id`),
+    UNIQUE out_trade_no(`out_trade_no`),
+    KEY user_id(`user_id`),
+    KEY create_time(`create_time`)
 )ENGINE=Innodb AUTO_INCREMENT=1 DEFAULT CHARSET=UTF8;
