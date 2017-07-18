@@ -47,7 +47,7 @@
         <div class="final-price-area">应付总额：<span class="sum">￥<span class="price">{$deal.current_price*$count}</span></span></div>
 
         <div class="page-button-wrap">
-            <a href="" class="btn btn-primary">确认</a>
+            <a class="o2o_pay btn btn-primary">确认</a>
         </div>
 
         <div style="width: 100%;min-width: 1200px;height: 5px;background: #dbdbdb;margin: 50px 0 20px;"></div>
@@ -195,6 +195,12 @@
             num++;
             inputChange(num);
         });
+        $(".o2o_pay").click(function(){
+            var count = $(".buycount-ctrl input").val();
+            var price = $(".sum .price").text();
+            url = "{:url('order/index',['id'=>$deal.id])}"+"&deal_count="+count+"&total_price="+price;
+            self.location = url;
+        })
     </script>
 </body>
 </html>

@@ -197,7 +197,7 @@ CREATE TABLE `o2o_order`(
     `payment_id` tinyint(1) NOT NULL DEFAULT 1 comment'支付方式',
     `deal_id` int(11) unsigned NOT NULL DEFAULT 0,
     `deal_count` int(11) unsigned NOT NULL DEFAULT 0,
-    `pay_status` tinyint(1) NOT NULL DEFAULT 1 comment'支付状态 0:未支付 1:支付成功 2:支付失败',
+    `pay_status` tinyint(1) NOT NULL DEFAULT 0 comment'支付状态 0:未支付 1:支付成功 2:支付失败',
     `total_price` decimal(20,2) NOT NULL DEFAULT '0.00',
     `pay_amount` decimal(20,2) NOT NULL DEFAULT '0.00' comment'微信支付总额',
     `status` tinyint(1) NOT NULL DEFAULT 1,

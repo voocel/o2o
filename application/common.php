@@ -77,3 +77,11 @@ function countLocation($ids){
     }
 
 }
+
+//设置订单号
+function setOrderSn(){
+    list($t1,$t2) = explode(' ',microtime());
+    $t3 = explode('.',$t1);
+    $res = $t2.$t3[1].rand(10000,99999);
+    return $res;
+}
