@@ -31,7 +31,7 @@ class Base extends Controller
                 break;       //找到默认城市，则终止循环
             }
         }
-            $defaultuname = $defaultuname ? $defaultuname:'beijing';
+            $defaultuname = $defaultuname ??'beijing';
             if(session('cityuname','','o2o') && !input('get.city') ){
                 $cityuname = session("cityuname",'','o2o');
             }else{
