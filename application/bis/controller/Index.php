@@ -1,6 +1,8 @@
 <?php
 namespace app\bis\controller;
+
 use think\Controller;
+
 class Index extends Controller
 {
     public function index()
@@ -8,7 +10,8 @@ class Index extends Controller
         return $this->fetch();
     }
 
-    public function welcome(){
+    public function welcome()
+    {
         return $this->fetch();
     }
 }

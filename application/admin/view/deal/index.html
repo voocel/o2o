@@ -78,6 +78,7 @@
 </div>
 <!--分页-->
 {:pagination($categorys)}
+
 <!--_footer 作为公共模版分离出去-->
 {include file="public/_footer"}
 <!--/_footer 作为公共模版分离出去-->
@@ -96,15 +97,15 @@ $('.table-sort').dataTable({
 	  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
 	]
 });
-/*系统-栏目-添加*/
+
 function system_category_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
-/*系统-栏目-编辑*/
+
 function system_category_edit(title,url,id,w,h){
 	layer_show(title,url,w,h);
 }
-/*系统-栏目-删除*/
+
 function system_category_del(url){
 	layer.confirm('确认要删除吗？',function(index){
          window.location.href=url;

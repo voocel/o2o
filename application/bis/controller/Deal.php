@@ -1,6 +1,8 @@
 <?php
 namespace app\bis\controller;
+
 use think\Controller;
+
 class Deal extends Base
 {
     //团购列表
@@ -8,20 +10,20 @@ class Deal extends Base
     {
         $data = input('get.');
         $sdata = [];
-        if(!empty($data['start_time'])&&!empty($data['end_time'])&&strtotime($data['end_time'])>strtotime($data['start_time'])){
+        if (!empty($data['start_time'])&&!empty($data['end_time'])&&strtotime($data['end_time'])>strtotime($data['start_time'])) {
             $sdata['create_time']=array(
                 ['gt',strtotime($data['start_time'])],
                 ['lt',strtotime($data['end_time'])]
             );
         }
-        if(!empty($data['category_id'])){
+        if (!empty($data['category_id'])) {
             $sdata['category_id'] = $data['category_id'];
         }
-        if(!empty($data['city_id'])){
+        if (!empty($data['city_id'])) {
             $sdata['city_id'] = $data['city_id'];
         }
         
-        if(!empty($data['name'])){
+        if (!empty($data['name'])) {
             $sdata['name'] = ['like','%'.$data['name'].'%'];
         }
         $deals = model('deal')->getNormalDeals($sdata);
@@ -35,7 +37,7 @@ class Deal extends Base
             $cityArrs[$city->id] = $city->name;
         }
 
-        return $this->fetch('',[
+        return $this->fetch('', [
            'citys'   => $citys,
            'categorys' => $categorys,
            'deals'    => $deals,
@@ -52,9 +54,10 @@ class Deal extends Base
     }
 
     //团购商品添加
-    public function add(){
+    public function add()
+    {
         $bisId = $this->getLoginUser()->bis_id;
-        if(request()->isPost()){
+        if (request()->isPost()) {
             $data=input('post.');
             //TODO验证
             //获取经纬度用
@@ -64,9 +67,9 @@ class Deal extends Base
                 'name'     => $data['name'],
                 'image'    => $data['image'],
                 'category_id'    => $data['category_id'],
-                'se_category_id'    => empty($data['se_category_id'])?'':implode(',',$data['se_category_id']),
+                'se_category_id'    => empty($data['se_category_id'])?'':implode(',', $data['se_category_id']),
                 'city_id'    => $data['se_city_id'],
-                'location_ids'    => empty($data['location_ids'])?'':implode(',',$data['location_ids']),
+                'location_ids'    => empty($data['location_ids'])?'':implode(',', $data['location_ids']),
                 'start_time'    => strtotime($data['start_time']),
                 'end_time'    => strtotime($data['end_time']),
                 'total_count'    => $data['total_count'],
@@ -83,16 +86,15 @@ class Deal extends Base
             
             //入库
             $id=model('deal')->add($deals);
-            if($id){
-                $this->success("添加成功!",url('deal/index'));
-            }else{
+            if ($id) {
+                $this->success("添加成功!", url('deal/index'));
+            } else {
                 $this->error('添加失败!');
             }
-
         }
         $city = model('City')->getNormalCitysByParentId($parentId=0);
         $category = model('Category')->getNormalCategorysByParentId($parentId=0);
-        return $this->fetch('',['city'=>$city,
+        return $this->fetch('', ['city'=>$city,
                             'category'=>$category,
                             'bislocations' => model('BisLocation')->getNormalLocationByBisId($bisId)
                             ]);

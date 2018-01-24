@@ -1,39 +1,42 @@
 <?php
 namespace app\bis\controller;
+
 use think\Controller;
+
 class Location extends Base
 {
     /**
     *门店列表页
     */
-    public function index(){
+    public function index()
+    {
         $bis = model('bisLocation')->getBisLocationByStatus(1);
-        return $this->fetch('',['bis'=>$bis]);
-    
+        return $this->fetch('', ['bis'=>$bis]);
     }
 
     /**
     *门店添加
     */
-    public function add(){
+    public function add()
+    {
         //TODO数据验证
-        if(request()->isPost()){
-            //总店信息入库  
-       $data=input('post.');
-       $bisId=$this->getLoginUser()->bis_id;
+        if (request()->isPost()) {
+            //总店信息入库
+            $data=input('post.');
+            $bisId=$this->getLoginUser()->bis_id;
 
-       $data['cat'] = '';
-       if(!empty($data['se_category_id'])){
-           $data['cat'] = implode('|',$data['se_category_id']);
-       }
+            $data['cat'] = '';
+            if (!empty($data['se_category_id'])) {
+                $data['cat'] = implode('|', $data['se_category_id']);
+            }
 
-       //获取经纬度
-        $lnglat = \Map::getLngLat($data['address']);
-        if(empty($lnglat)||$lnglat['status']!==0||$lnglat['result']['precise']!=1){
-            $this->error('无法获取数据，或匹配地址不精确!');
-        }
+            //获取经纬度
+            $lnglat = \Map::getLngLat($data['address']);
+            if (empty($lnglat)||$lnglat['status']!==0||$lnglat['result']['precise']!=1) {
+                $this->error('无法获取数据，或匹配地址不精确!');
+            }
 
-       $locationData = array(
+            $locationData = array(
            'bis_id'        => $bisId,
            'name'          => $data['name'],
            'logo'          => $data['logo'],
@@ -50,23 +53,18 @@ class Location extends Base
            'xpoint'        => empty($lnglat['result']['location']['lng'])? '' :$lnglat['result']['location']['lng'],
            'ypoint'        => empty($lnglat['result']['location']['lat'])? '' :$lnglat['result']['location']['lat'],
        );
-       $locationId = model('BisLocation')->add($locationData);
-       if($locationId){
-          return $this->success("门店申请成功!");
-       }else{
-          return $this->error("门店申请失败!");
-       }
+            $locationId = model('BisLocation')->add($locationData);
+            if ($locationId) {
+                return $this->success("门店申请成功!");
+            } else {
+                return $this->error("门店申请失败!");
+            }
+        } else {
+            $city = model('City')->getNormalCitysByParentId($parentId=0);
+            $category = model('Category')->getNormalCategorysByParentId($parentId=0);
 
-        }else{
-        $city = model('City')->getNormalCitysByParentId($parentId=0);
-        $category = model('Category')->getNormalCategorysByParentId($parentId=0);
-
-        return $this->fetch('',['city'=>$city,'category'=>$category]);
-        return $this->fetch();
+            return $this->fetch('', ['city'=>$city,'category'=>$category]);
+            return $this->fetch();
         }
-    
     }
-
-
-
 }

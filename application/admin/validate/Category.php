@@ -1,8 +1,10 @@
 <?php
 namespace app\admin\validate;
+
 use think\Validate;
 
-class Category extends Validate{
+class Category extends Validate
+{
     protected $rule=[
           ['name','require|max:10','分类名不能为空|长度不能超过10个字'],
           ['parent_id','number','必须为整数'],

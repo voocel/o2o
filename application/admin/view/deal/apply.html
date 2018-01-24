@@ -1,51 +1,72 @@
 {include file="public/_meta"}
 <title>商家团购商品申请</title>
 </head>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+<nav class="breadcrumb">
+	<i class="Hui-iconfont">&#xe67f;</i> 首页
 	<span class="c-gray en">&gt;</span>
 	团购商品管理
 	<span class="c-gray en">&gt;</span>
 	团购商品申请列表
-	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);"
+	    title="刷新">
+		<i class="Hui-iconfont">&#xe68f;</i>
+	</a>
 </nav>
 </div>
 <div class="page-container">
 	<div class="text-c">
 		<input type="text" name="" id="" placeholder="栏目名称、id" style="width:250px" class="input-text">
-		<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+		<button name="" id="" class="btn btn-success" type="submit">
+			<i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 	</div>
 
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
 			<thead>
 				<tr class="text-c">
-					<th width="25"><input type="checkbox" name="" value=""></th>
+					<th width="25">
+						<input type="checkbox" name="" value="">
+					</th>
 					<th width="50">ID</th>
-                    <th width="150">商品名称</th>
+					<th width="150">商品名称</th>
 					<th width="100">栏目分类</th>
 					<th width="50">城市</th>
 					<th width="50">购买件数</th>
 					<th width="120">开始结束时间</th>
-                    <th width="130">创建时间</th>
-                    <th width="80">状态</th>
+					<th width="130">创建时间</th>
+					<th width="80">状态</th>
 					<th width="80">操作</th>
 				</tr>
 			</thead>
 			<tbody>
 				{volist name="deal" id='vo'}
 				<tr class="text-c">
-					<td><input type="checkbox" name="" value=""></td>
+					<td>
+						<input type="checkbox" name="" value="">
+					</td>
 					<td>{$vo.id}</td>
 					<td>{$vo.name}</td>
 					<td>{$categoryArrs[$vo.category_id]}</td>
-                    <td>{$cityArrs[$vo.city_id]}</td>
-                    <td>{$vo.buy_count}</td>
-                    <td>{$vo.start_time|date='Y-m-d H:i', ###}</br>{$vo.end_time|date='Y-m-d H:i', ###}</td>
+					<td>{$cityArrs[$vo.city_id]}</td>
+					<td>{$vo.buy_count}</td>
+					<td>{$vo.start_time|date='Y-m-d H:i', ###}</br>{$vo.end_time|date='Y-m-d H:i', ###}</td>
 					<td class="text-l">{$vo.create_time}</td>
-					<td><a href="{:url('deal/status',['id'=>$vo.id,'status'=>1])}" title="点击修改状态">{$vo.status|status}</a></td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url(\'bis/detail\',[\'id\'=>$vo.id])}','1','900','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del('{:url(\'bis/status\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
-						<a title="不通过" href="{:url('bis/status',['id'=>$vo.id,'status'=>2])}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">不通过</i></a></td>
+					<td>
+						<a href="{:url('deal/status',['id'=>$vo.id,'status'=>1])}" title="点击修改状态">{$vo.status|status}</a>
+					</td>
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{:url(\'bis/detail\',[\'id\'=>$vo.id])}','1','900','480')"
+						    style="text-decoration:none">
+							<i class="Hui-iconfont">&#xe6df;</i>
+						</a>
+						<a title="删除" href="javascript:;" onclick="system_category_del('{:url(\'bis/status\',[\'id\'=>$vo.id,\'status\'=>-1])}')"
+						    class="ml-5" style="text-decoration:none">
+							<i class="Hui-iconfont">&#xe6e2;</i>
+						</a>
+						<a title="不通过" href="{:url('bis/status',['id'=>$vo.id,'status'=>2])}" class="ml-5" style="text-decoration:none">
+							<i class="Hui-iconfont">不通过</i>
+						</a>
+					</td>
 				</tr>
 				{/volist}
 			</tbody>
@@ -64,34 +85,40 @@
 <script type="text/javascript" src="__STATIC__/admin/hui/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
 <script type="text/javascript">
-$('.table-sort').dataTable({
-	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-	"bStateSave": true,//状态保存
-	"aoColumnDefs": [
-	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
-	]
-});
-/*系统-栏目-添加*/
-function system_category_add(title,url,w,h){
-	layer_show(title,url,w,h);
-}
-/*系统-栏目-编辑*/
-function system_category_edit(title,url,id,w,h){
-	layer_show(title,url,w,h);
-}
-/*系统-栏目-删除*/
-function system_category_del(url){
-	layer.confirm('确认要删除吗？',function(index){
-         window.location.href=url;
+	$('.table-sort').dataTable({
+		"aaSorting": [
+			[1, "desc"]
+		], //默认第几个排序
+		"bStateSave": true, //状态保存
+		"aoColumnDefs": [
+			//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+			{
+				"orderable": false,
+				"aTargets": [0, 4]
+			} // 制定列不参与排序
+		]
 	});
-}
+	/*系统-栏目-添加*/
+	function system_category_add(title, url, w, h) {
+		layer_show(title, url, w, h);
+	}
+	/*系统-栏目-编辑*/
+	function system_category_edit(title, url, id, w, h) {
+		layer_show(title, url, w, h);
+	}
+	/*系统-栏目-删除*/
+	function system_category_del(url) {
+		layer.confirm('确认要删除吗？', function (index) {
+			window.location.href = url;
+		});
+	}
 </script>
 
 <script>
 	var SCOPE = {
-		"listorder_url"  : "{:url('category/listorder')}"
+		"listorder_url": "{:url('category/listorder')}"
 	}
 </script>
 </body>
+
 </html>

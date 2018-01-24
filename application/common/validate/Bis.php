@@ -1,8 +1,10 @@
 <?php
 namespace app\common\validate;
+
 use think\Validate;
 
-class Bis extends Validate{
+class Bis extends Validate
+{
     protected $rule = [
         'name'      => 'require|max:25',
         'email'     => 'require|email',
@@ -20,6 +22,4 @@ class Bis extends Validate{
     protected $scene = array(
         'add'       => ['name','email','city_id','logo','bank_info','bank_name','bank_user','faren','faren_tel'],
     );
-
-
 }

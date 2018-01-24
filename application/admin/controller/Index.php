@@ -1,7 +1,9 @@
 <?php
 namespace app\admin\controller;
+
 use think\Controller;
 use phpmailer\Email;
+
 class Index extends Controller
 {
     public function index()

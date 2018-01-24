@@ -6,7 +6,8 @@ use think\Model;
 
 class City extends Model
 {
-    public function getNormalCitysByParentId($parentId){
+    public function getNormalCitysByParentId($parentId)
+    {
         $where = [
             'status'  => 1,
             'parent_id' => $parentId,
@@ -15,11 +16,12 @@ class City extends Model
             'id'   => 'desc',
         ];
 
-       return $this->where($where)->order($order)->select();
+        return $this->where($where)->order($order)->select();
     }
     
     //获取市
-    public function getNormalCitys(){
+    public function getNormalCitys()
+    {
         $where = array(
             'status'    => 1,
             'parent_id' => ['gt',0]
@@ -28,6 +30,6 @@ class City extends Model
             'id'   =>'desc',
         );
 
-      return  $this->where($where)->order($order)->select();
+        return  $this->where($where)->order($order)->select();
     }
 }

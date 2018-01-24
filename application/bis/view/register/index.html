@@ -1,207 +1,217 @@
 {include file="public/_meta"}
 
 </head>
+
 <body>
-<div class="page-container">
-    <div class="text-c c-primary">商户入驻申请</div>
-    <div>基本信息</div>
-	<form action="{:url('register/add')}" method="post" class="form form-horizontal" id="form-article-add">
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商户名称：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="name">
-			</div>
-		</div>
-
-        <!--地址选择-->
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属城市</label>
-            <div class="formControls col-xs-8 col-sm-9" style="width:30%">
-                <span class="select-box">
-				<select name="city_id" class="select city_id">
-					<option value="0">--请选择--</option>
-                    {volist name='city' id='vo'}
-					<option value="{$vo.id}">{$vo.name}</option>
-                    {/volist}
-				</select>
-                </span>
+	<div class="page-container">
+		<div class="text-c c-primary">商户入驻申请</div>
+		<div>基本信息</div>
+		<form action="{:url('register/add')}" method="post" class="form form-horizontal" id="form-article-add">
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">
+					<span class="c-red">*</span>商户名称：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" class="input-text" value="" placeholder="" id="" name="name">
+				</div>
 			</div>
 
-            <div class="formControls col-xs-8 col-sm-9" style="width:30%">
-                <span class="select-box">
-				<select name="se_city_id" class="select se_city_id">
-					<option value="0">--请选择--</option>
-                    
-				</select>
-                </span>
+			<!--地址选择-->
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">
+					<span class="c-red">*</span>所属城市</label>
+				<div class="formControls col-xs-8 col-sm-9" style="width:30%">
+					<span class="select-box">
+						<select name="city_id" class="select city_id">
+							<option value="0">--请选择--</option>
+							{volist name='city' id='vo'}
+							<option value="{$vo.id}">{$vo.name}</option>
+							{/volist}
+						</select>
+					</span>
+				</div>
+
+				<div class="formControls col-xs-8 col-sm-9" style="width:30%">
+					<span class="select-box">
+						<select name="se_city_id" class="select se_city_id">
+							<option value="0">--请选择--</option>
+
+						</select>
+					</span>
+				</div>
 			</div>
-        </div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
-			<div class="formControls col-xs-8 col-sm-9">					
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
+				<div class="formControls col-xs-8 col-sm-9">
 					<input type="file" name="file_upload" id="file_upload" />
-				    <img style="display:none" src="" alt="" id='upload_org_code_img'>
-                    <input id="file_upload_image" type="hidden" name="logo"  multiple="true" value="">
+					<img style="display:none" src="" alt="" id='upload_org_code_img'>
+					<input id="file_upload_image" type="hidden" name="logo" multiple="true" value="">
+				</div>
 			</div>
-		</div>
 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">营业执照：</label>
-			<div class="formControls col-xs-8 col-sm-9">					
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">营业执照：</label>
+				<div class="formControls col-xs-8 col-sm-9">
 					<input type="file" name="file_upload_other" id="file_upload_other" />
-				    <img src="" alt="" id='upload_org_code_img_other'>
-                    <input id="file_upload_image_other" type="hidden" name="licence_logo"  multiple="true" value="">
+					<img src="" alt="" id='upload_org_code_img_other'>
+					<input id="file_upload_image_other" type="hidden" name="licence_logo" multiple="true" value="">
+				</div>
 			</div>
-		</div>
 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">商户介绍：</label>
-			<div class="formControls col-xs-8 col-sm-9" > 
-				<script id="editor" name="description"  type="text/plain" style="width:100%;height:400px;"></script> 
-				
-			</div>
-		</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">商户介绍：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<script id="editor" name="description" type="text/plain" style="width:100%;height:400px;"></script>
 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">银行账户：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="bank_info">
+				</div>
 			</div>
-		</div>
 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">开户行名称：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="0" placeholder="" id="" name="bank_name">
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">银行账户：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" class="input-text" value="" placeholder="" id="" name="bank_info">
+				</div>
 			</div>
-		</div>
 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">开户行姓名：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="bank_user" id="" placeholder="" value="" class="input-text">
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">开户行名称：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" class="input-text" value="0" placeholder="" id="" name="bank_name">
+				</div>
 			</div>
-		</div>
 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">法人：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="faren" id="" placeholder="" value="" class="input-text">
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">开户行姓名：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" name="bank_user" id="" placeholder="" value="" class="input-text">
+				</div>
 			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">法人电话：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="faren_tel" id="" placeholder="" value="" class="input-text">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">邮箱：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="email" id="" placeholder="" value="" class="input-text">
-			</div>
-		</div>
-<div>总店信息：</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">电话：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="tel" id="" placeholder="" value="" class="input-text">
-			</div>
-		</div>		
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">联系人：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="contact" id="" placeholder="" value="" class="input-text">
-			</div>
-		</div>
 
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属分类：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="category_id" class="select category_id">
-					<option value="0">一级分类</option>
-                    {volist name='category' id='vo'}
-                    <option value="{$vo.id}">{$vo.name}</option>
-                    {/volist}
-				</select>
-				</span> </div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">所属子类：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<div class="check-box se_category_id">
-
-                </div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">法人：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" name="faren" id="" placeholder="" value="" class="input-text">
+				</div>
 			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">商户地址：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="address" id="" placeholder="" value="" class="input-text">
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">法人电话：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" name="faren_tel" id="" placeholder="" value="" class="input-text">
+				</div>
 			</div>
-		</div>    
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">营业时间：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="open_time" id="" placeholder="" value="" class="input-text">
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">邮箱：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" name="email" id="" placeholder="" value="" class="input-text">
+				</div>
 			</div>
-		</div>    
-
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">门店介绍：</label>
-			<div class="formControls col-xs-8 col-sm-9"> 
-				<textarea name="content" id="" cols="120" rows="20">
-
-                </textarea>
+			<div>总店信息：</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">电话：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" name="tel" id="" placeholder="" value="" class="input-text">
+				</div>
 			</div>
-		</div>
-        <div>账号信息：</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">用户名：</label>
-			<div class="formControls col-xs-8 col-sm-9"> 
-				<input type="text" name="username" id="" placeholder="" value="" class="input-text">
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">联系人：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" name="contact" id="" placeholder="" value="" class="input-text">
+				</div>
 			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">密码：</label>
-			<div class="formControls col-xs-8 col-sm-9"> 
-				<input type="password" name="password" id="" placeholder="" value="" class="input-text">
+
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">
+					<span class="c-red">*</span>所属分类：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<span class="select-box">
+						<select name="category_id" class="select category_id">
+							<option value="0">一级分类</option>
+							{volist name='category' id='vo'}
+							<option value="{$vo.id}">{$vo.name}</option>
+							{/volist}
+						</select>
+					</span>
+				</div>
 			</div>
-		</div>        
-		<div class="row cl">
-			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
-				<button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
-				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">所属子类：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<div class="check-box se_category_id">
+
+					</div>
+				</div>
 			</div>
-		</div>
-	</form>
-</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">商户地址：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" name="address" id="" placeholder="" value="" class="input-text">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">营业时间：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" name="open_time" id="" placeholder="" value="" class="input-text">
+				</div>
+			</div>
 
-<!--_footer 作为公共模版分离出去-->
-{include file="public/_footer"}
-<!--/_footer 作为公共模版分离出去-->
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">门店介绍：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<textarea name="content" id="" cols="120" rows="20">
 
-<!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="__STATIC__/admin/hui/lib/ueditor/1.4.3/ueditor.config.js"></script>
-<script type="text/javascript" src="__STATIC__/admin/hui/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
-<script type="text/javascript" src="__STATIC__/admin/hui/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript" src="__STATIC__/admin/js/image.js"></script>
-<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
-<script>
-    var SCOPE = {
-        'city_id'        :  '{:url("api/city/getCitysByParentId")}',
-        'category_url'   :  '{:url("api/category/getCategorysByParentId")}',
-        'uploadify_swf'  :  '__STATIC__/admin/uploadify/uploadify.swf',
-        'image_upload'   :  '{:url("api/image/upload")}'
+					</textarea>
+				</div>
+			</div>
+			<div>账号信息：</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">用户名：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="text" name="username" id="" placeholder="" value="" class="input-text">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form-label col-xs-4 col-sm-2">密码：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<input type="password" name="password" id="" placeholder="" value="" class="input-text">
+				</div>
+			</div>
+			<div class="row cl">
+				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+					<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit">
+						<i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+					<button onClick="article_save();" class="btn btn-secondary radius" type="button">
+						<i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
+					<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				</div>
+			</div>
+		</form>
+	</div>
 
-    }
-</script>
+	<!--_footer 作为公共模版分离出去-->
+	{include file="public/_footer"}
+	<!--/_footer 作为公共模版分离出去-->
 
-<script type="text/javascript">
-$(function(){
-	var ue = UE.getEditor('editor');
-});
-</script>
+	<!--请在下方写此页面业务相关的脚本-->
+	<script type="text/javascript" src="__STATIC__/admin/hui/lib/ueditor/1.4.3/ueditor.config.js"></script>
+	<script type="text/javascript" src="__STATIC__/admin/hui/lib/ueditor/1.4.3/ueditor.all.min.js">
+	</script>
+	<script type="text/javascript" src="__STATIC__/admin/hui/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" src="__STATIC__/admin/js/image.js"></script>
+	<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+	<script>
+		var SCOPE = {
+			'city_id': '{:url("api/city/getCitysByParentId")}',
+			'category_url': '{:url("api/category/getCategorysByParentId")}',
+			'uploadify_swf': '__STATIC__/admin/uploadify/uploadify.swf',
+			'image_upload': '{:url("api/image/upload")}'
+
+		}
+	</script>
+
+	<script type="text/javascript">
+		$(function () {
+			var ue = UE.getEditor('editor');
+		});
+	</script>
 </body>
+
 </html>

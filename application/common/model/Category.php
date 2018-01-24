@@ -6,19 +6,22 @@ use think\Model;
 class Category extends Model
 {
     protected $autoWriteTimestamp = true;
-    public function add($data){
+    public function add($data)
+    {
         $data['status'] = 1;
         // $data['create_time'] = time();
         return $this->save($data);
     }
 
     //更新编辑分类
-    public function myupdate($data){
-       $res = $this->save($data,intval(['id'=>$data['id']]));
-       return $res;
+    public function myupdate($data)
+    {
+        $res = $this->save($data, intval(['id'=>$data['id']]));
+        return $res;
     }
 
-    public function getNormalFirstCategory(){
+    public function getNormalFirstCategory()
+    {
         $where = [
             'status'    => 1,
             'parent_id' =>0,
@@ -28,7 +31,8 @@ class Category extends Model
     }
 
     //分类列表展示一级栏目
-    public function getFirstCategory($parentId=0){
+    public function getFirstCategory($parentId=0)
+    {
         $where = [
             'parent_id'   => $parentId,
             'status'      => ['neq',-1],
@@ -42,8 +46,9 @@ class Category extends Model
         return $res;
     }
 
-//前端api调用
-    public function getNormalCategorysByParentId($parentId){
+    //前端api调用
+    public function getNormalCategorysByParentId($parentId)
+    {
         $where = [
             'status'  => 1,
             'parent_id' => $parentId,
@@ -52,10 +57,11 @@ class Category extends Model
             'id'   => 'desc',
         ];
 
-       return $this->where($where)->order($order)->paginate();
+        return $this->where($where)->order($order)->paginate();
     }
 
-    public function getNormalRecommendCategoryByParentId($id=0,$limit=5){
+    public function getNormalRecommendCategoryByParentId($id=0, $limit=5)
+    {
         $where = array(
             'status'   => 1,
             'parent_id'=> $id
@@ -66,15 +72,16 @@ class Category extends Model
         );
 
         $res = $this->where($where)->order($order);
-        if($limit){
+        if ($limit) {
             $res = $res->limit($limit);
         }
         return $res->select();
     }
 
-    public function getNormalCategoryIdParentId($ids){
+    public function getNormalCategoryIdParentId($ids)
+    {
         $where = array(
-            'parent_id'   => ['in',implode(',',$ids)],
+            'parent_id'   => ['in',implode(',', $ids)],
             'status'   => 1,
         );
         $order = array(
@@ -84,8 +91,4 @@ class Category extends Model
         $res = $this->where($where)->order($order)->select();
         return $res;
     }
-
-
-
-    
 }
