@@ -2,5 +2,6 @@
 composer.lock
 *.log
 thinkphp
+vendor
 /public/upload/*
 /public/ueditor/php/upload/*
